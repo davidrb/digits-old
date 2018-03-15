@@ -1,0 +1,7 @@
+*.iml
+.idea
+.DS_Store
+node_modules
+settings.production.json
+*.iml
+.idea
