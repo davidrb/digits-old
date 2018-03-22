@@ -1,12 +1,23 @@
 import React from 'react';
-import { Table, Card, Image, Feed } from 'semantic-ui-react';
+import { Button, Table, Card, Image, Feed } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 import Note from '/imports/ui/components/Note';
 import AddNote from '/imports/ui/components/AddNote';
+import Contacts from '/imports/api/contact/contact';
+import { Bert } from 'meteor/themeteorchef:bert';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class Contact extends React.Component {
+  constructor(props) {
+    super(props);
+    this.deleteCallback = this.deleteCallback.bind(this);
+  }
+
+  deleteCallback() {
+    Bert.alert({ type: 'success', message: 'Add succeeded' });
+  }
+
   render() {
     return (
         <Card centered>
@@ -32,6 +43,9 @@ class Contact extends React.Component {
           </Card.Content>
           <Card.Content extra>
             <AddNote owner={this.props.contact.owner} contactId={this.props.contact._id} />
+          </Card.Content>
+          <Card.Content extra>
+            <Button basic color='red' onClick={this.deleteCallback}>Delete Contact</Button>
           </Card.Content>
         </Card>
     );
